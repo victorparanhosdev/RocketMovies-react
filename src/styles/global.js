@@ -21,10 +21,13 @@ body * {
 }
 
 a, button{
-  transition: filter 0.4s;
+  transition-property: filter;
+  transition: linear 0.3s;
+  cursor: pointer;
 }
 a:hover, button:hover {
   filter: brightness(0.9);
+
 }
 
 
