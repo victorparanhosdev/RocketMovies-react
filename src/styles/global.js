@@ -31,6 +31,20 @@ a:hover, button:hover {
 
 }
 
+::-webkit-scrollbar {
+  background-color:transparent;
+  width: 0.8rem;
+  height: 0.8rem;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 0.8rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  background: ${({theme})=> theme.COLORS.ROSE};
+ 
+}
+
+
 
 `;
 

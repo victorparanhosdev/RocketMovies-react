@@ -4,28 +4,35 @@ import styled from "styled-components";
 
 
 export const Container = styled.header`
-padding: 2.4rem 12.3rem;
-height: 11.6rem;
-width: 100%;
-display: flex;
-grid-area: header;
-align-items: center;
-justify-content: space-between;
 border-bottom: 1px solid ${({theme})=> theme.COLORS.BORDER};
 
-> h1 {
-    font-size: 2.4rem;
-    font-weight:700;
-    color: ${({theme})=> theme.COLORS.ROSE};
-}
+> div {
+    max-width: 140rem;
+    margin: auto;
+    
+    padding: 2.4rem 0;
+    height: 11.6rem;
+    width: 100%;
+    display: flex;
+    grid-area: header;
+    align-items: center;
+    justify-content: space-between;
 
-> div:has(input){
-    max-width: 63rem;
-    padding-inline: 2.4rem;
+    
+    > h1 {
+        font-size: 2.4rem;
+        font-weight:700;
+        color: ${({theme})=> theme.COLORS.ROSE};
+    }
+    
+    > div:has(input){
+        max-width: 63rem;
+        padding-inline: 2.4rem;
+    
+    }
+    
 
-}
-
-
+}    
 
 `;
 

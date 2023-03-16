@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 export function Header(){
     return(
         <Container>
+            <div>
             <h1>ReactMovies</h1>
             <Input placeholder="Pesquisar pelo titulo"/>
             <Profile>
@@ -13,6 +14,7 @@ export function Header(){
                 </div>
                 <Link to="/profile"><img src="https://github.com/victorparanhosdev.png" alt="Foto Perfil" /></Link>
             </Profile>
+            </div>
         </Container>
     )
 }

@@ -32,7 +32,7 @@ margin: auto;
 }
 
 > section {
-  height: 50rem;
+  height: calc(100vh - 30rem);
   overflow: auto;
 
   div + div {
@@ -53,7 +53,7 @@ margin: auto;
       text-align: justify;
       font-size: 1.6rem;
       font-weight: 400;
-      height: 6rem;
+      height: 4rem;
       overflow: auto;
     }
 
