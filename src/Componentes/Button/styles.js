@@ -8,5 +8,11 @@ height: 5.6rem;
 color: ${({theme})=> theme.COLORS.GRAY_300};
 font-weight: 500;
 border-radius: 1rem;
+display: flex;
+align-items: center;
+justify-content: center;
+> svg {
+  margin-right: 0.8rem;
+}
 
 `;

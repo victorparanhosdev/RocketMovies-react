@@ -8,8 +8,10 @@ padding: 2.4rem 12.3rem;
 height: 11.6rem;
 width: 100%;
 display: flex;
+grid-area: header;
 align-items: center;
 justify-content: space-between;
+border-bottom: 1px solid ${({theme})=> theme.COLORS.BORDER};
 
 > h1 {
     font-size: 2.4rem;
@@ -19,7 +21,10 @@ justify-content: space-between;
 
 > div:has(input){
     max-width: 63rem;
+    padding-inline: 2.4rem;
+
 }
+
 
 
 `;
