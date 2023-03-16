@@ -22,7 +22,7 @@ export function SignUp() {
       <Input placeholder="Senha" type="password" icon={FiLock}/>
       <Button name="Cadastrar"/>
 
-      <ButtonText to="/" icon={FiArrowLeft} name="Voltar para o login"/>
+      <ButtonText icon={FiArrowLeft} name="Voltar para o login"/>
 
       </Form>
       
