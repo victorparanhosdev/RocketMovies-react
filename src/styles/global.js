@@ -24,6 +24,7 @@ a, button{
   transition-property: filter;
   transition: linear 0.3s;
   cursor: pointer;
+  text-decoration: none;
 }
 a:hover, button:hover {
   filter: brightness(0.9);
