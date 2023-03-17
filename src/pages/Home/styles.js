@@ -17,7 +17,7 @@ margin: auto;
   justify-content: space-between;
   padding: 5rem 0;
   margin: auto;
-  button {
+  a {
     max-width: 20.7rem;
     height: 4.8rem;
     font-size: 1.6rem;
@@ -35,6 +35,7 @@ margin: auto;
   height: calc(100vh - 30rem);
   overflow: auto;
 
+ 
   div + div {
     margin-top: 2.4rem;
   }
@@ -43,8 +44,12 @@ margin: auto;
     background: ${({theme})=> theme.COLORS.ROSEOPACITY};
     border-radius: 1.6rem;
     padding: 3.2rem;
-
-    h2{
+    a {
+      &:hover{
+        filter: none;
+      }
+      h2{
+      color: ${({theme})=> theme.COLORS.WHITE};
       font-size: 2.4rem;
       font-weight: 700;
     }
@@ -53,10 +58,12 @@ margin: auto;
       text-align: justify;
       font-size: 1.6rem;
       font-weight: 400;
-      height: 4rem;
-      overflow: auto;
     }
 
+
+    }
+
+   
   }
 }
 
@@ -78,3 +85,4 @@ svg {
   color: ${({theme})=> theme.COLORS.ROSE};
 }
 `;
+

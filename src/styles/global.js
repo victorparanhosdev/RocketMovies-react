@@ -18,6 +18,7 @@ body {
 }
 body * {
   font-family: 'Roboto Slab', serif;
+  font-size: 1.6rem;
 }
 
 a, button{
@@ -25,11 +26,13 @@ a, button{
   transition: linear 0.3s;
   cursor: pointer;
   text-decoration: none;
+  color: ${({theme})=> theme.COLORS.WHITE}
 }
 a:hover, button:hover {
   filter: brightness(0.9);
 
 }
+
 
 ::-webkit-scrollbar {
   background-color:transparent;

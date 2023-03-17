@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const Container = styled.div`
 height: 5.6rem;
 width: 100%;
-
+margin-bottom: 0.8rem;
 display: flex;
 align-items: center;
 background: ${({theme})=> theme.COLORS.BACKGROUND_200};
@@ -29,7 +29,10 @@ padding-inline: 1.6rem;
   color: ${({theme})=> theme.COLORS.WHITE};
 
   &::placeholder{
-    color: ${({theme})=> theme.COLORS.GRAY_200}
+    color: ${({theme})=> theme.COLORS.GRAY_200};
+    font-size: 1.4rem;
+    font-weight: 400;
+    
   }
  
 }

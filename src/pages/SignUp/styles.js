@@ -42,11 +42,9 @@ margin: auto;
   font-size: 2.4rem;
   margin-bottom: 4.8rem;
 }
-div + div {
-  margin-top: 0.8rem;
-}
->button {
-  margin: 2.4rem auto 4.2rem;
+
+>a {
+  margin: 1.6rem auto 4.2rem;
 }
 div:last-child {
   display: flex;
