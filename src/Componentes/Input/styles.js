@@ -8,13 +8,13 @@ margin-bottom: 0.8rem;
 display: flex;
 align-items: center;
 background: ${({theme})=> theme.COLORS.BACKGROUND_200};
-outline: 2px solid transparent;
-transition: outline 0.3s;
+border: 2px solid transparent;
+transition: border 0.3s;
 border-radius: 1rem;
 padding-inline: 1.6rem;
 
 &:focus-within{
-    outline: 2px solid ${({theme})=> theme.COLORS.ROSE};
+    border: 2px solid ${({theme})=> theme.COLORS.ROSE};
   }
 
 > input {
