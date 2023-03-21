@@ -2,12 +2,9 @@ import { Container, Content, Text } from "./styles"
 import { Header } from "../../Componentes/Header"
 import { ButtonText } from "../../Componentes/ButtonText"
 import { FiArrowLeft } from "react-icons/fi"
-
+import {IoMdClose, IoMdAdd} from "react-icons/io"
 import { Input } from "../../Componentes/Input"
 import { Button } from "../../Componentes/Button"
-import { Tag } from "../../Componentes/Tag"
-import {IoMdAdd, IoMdClose} from "react-icons/io"
-
 export function NewMovie() {
   return (
     <Container>
@@ -25,7 +22,7 @@ export function NewMovie() {
               <Input type="text" placeholder="Sua nota (de 0 a 5)" />
             </div>
 
-            <textarea placeholder="Observação" name="" id="" rows="4"></textarea>
+            <textarea placeholder="Observação" name="" id="" rows="3"></textarea>
           </Text>
 
           <div>

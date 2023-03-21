@@ -34,7 +34,7 @@ export const Text = styled.div`
     display: flex;
     gap: 4rem;
   }
-`
+`;
 
 export const Content = styled.div`
   max-width: 140rem;
@@ -42,7 +42,8 @@ export const Content = styled.div`
 
   main {
 
-  
+    height: calc(100vh - 30rem);
+
     > h1 {
       font-size: 3.6rem;
       font-weight: 500;
@@ -72,8 +73,6 @@ export const Content = styled.div`
           color: ${({ theme }) => theme.COLORS.ROSE};
           cursor: pointer;
         }
-
-        
         span:first-child {
           font-size: 1.6rem;
           font-family: "Roboto";
