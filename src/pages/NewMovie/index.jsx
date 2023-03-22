@@ -2,7 +2,7 @@ import { Container, Content, Text } from "./styles"
 import { Header } from "../../Componentes/Header"
 import { ButtonText } from "../../Componentes/ButtonText"
 import { FiArrowLeft } from "react-icons/fi"
-import {IoMdClose, IoMdAdd} from "react-icons/io"
+import { IoMdClose, IoMdAdd } from "react-icons/io"
 import { Input } from "../../Componentes/Input"
 import { Button } from "../../Componentes/Button"
 export function NewMovie() {
@@ -28,8 +28,10 @@ export function NewMovie() {
           <div>
             <h2>Marcadores</h2>
             <div>
-              <span>React<IoMdClose/></span>
-              <span>Novo Marcador<IoMdAdd/></span>
+              <span>React<IoMdClose /></span>
+              <div>
+                <input type="text" placeholder="Novo Marcador" /><IoMdAdd />
+              </div>
             </div>
 
           </div>

@@ -3,7 +3,6 @@ import styled from 'styled-components'
 export const Container = styled.div``
 
 export const Text = styled.div`
-
   textarea {
     background: ${({ theme }) => theme.COLORS.BACKGROUND_200};
     padding: 1.9rem 1.6rem;
@@ -34,14 +33,13 @@ export const Text = styled.div`
     display: flex;
     gap: 4rem;
   }
-`;
+`
 
 export const Content = styled.div`
   max-width: 140rem;
   margin: 4rem auto 0;
 
   main {
-
     height: calc(100vh - 30rem);
 
     > h1 {
@@ -51,7 +49,6 @@ export const Content = styled.div`
       margin: 2.4rem auto 4rem;
     }
     > div:has(span) {
-
       h2 {
         color: ${({ theme }) => theme.COLORS.TEXT};
         font-size: 2rem;
@@ -75,29 +72,36 @@ export const Content = styled.div`
         }
         span:first-child {
           font-size: 1.6rem;
-          font-family: "Roboto";
-          color: #FFFFFF;
+          font-family: 'Roboto';
+          color: #ffffff;
           font-weight: 400;
           padding: 1.6rem;
-          background:${({ theme }) => theme.COLORS.BACKGROUND_200};
-          border-radius: 1rem;
-          display: flex;
-          align-items: center;
-          gap: 1.6rem;    
-        }
-
-        span:last-child {
-          color: ${({theme})=> theme.COLORS.GRAY_200};
-          border: 2px dashed;
-          font-weight: 400;
-          padding: 1.6rem;
+          background: ${({ theme }) => theme.COLORS.BACKGROUND_200};
           border-radius: 1rem;
           display: flex;
           align-items: center;
           gap: 1.6rem;
+        }
 
-       
-    
+        > div {
+          display: flex;
+          align-items: center;
+          border: 2px dashed;
+          border-radius: 1rem;
+          background-color: ${({ theme }) => theme.COLORS.BACKGROUND_200};
+          input {
+            background-color: ${({ theme }) => theme.COLORS.BACKGROUND_200};
+            color: ${({ theme }) => theme.COLORS.WHITE};
+            border: none;
+            outline: none;
+            font-weight: 400;
+            padding: 1.6rem;
+            border-radius: 1rem;
+            max-width: 15rem;
+          }
+          svg {
+            margin-right: 1.6rem;
+          }
         }
       }
     }
