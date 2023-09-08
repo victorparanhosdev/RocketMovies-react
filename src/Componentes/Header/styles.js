@@ -6,10 +6,10 @@ import styled from "styled-components";
 export const Container = styled.header`
 border-bottom: 1px solid ${({theme})=> theme.COLORS.BORDER};
 
+
 > div {
-    max-width: 140rem;
+
     margin: auto;
-    
     padding: 2.4rem 0;
     height: 11.6rem;
     width: 100%;

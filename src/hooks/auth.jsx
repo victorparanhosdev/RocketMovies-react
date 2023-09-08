@@ -1,10 +1,40 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { api } from "../services/api";
 
 const AuthContext = createContext({})
 
 function AuthProvider({children}){
     const [data, setData] = useState({})
+
+    function signOut(){
+        localStorage.removeItem("rocketmovies@user:")
+        localStorage.removeItem("rocketmovies@token:")
+        setData({})
+    }
+    async function updateProfile({name, email, passwordNew, passwordOld}){
+
+        try{
+            if(passwordNew && !passwordOld || !passwordNew && passwordOld){
+                return alert("Para alterar a senha é preciso preencher os dois campos")
+            }
+
+            const response = await api.put("/users", {name, email, password: passwordNew, old_password: passwordOld})
+            const {user} = response.data
+            setData({user, token: data.token})
+            localStorage.setItem("rocketmovies@user:", JSON.stringify(user)); 
+            alert("Perfil Atualizado")
+            
+
+        }catch(error){
+            if(error.response){
+                alert(error.response.data.message)
+            }else {
+                alert("Não foi possivel Atualizar os Dados")
+            }
+        }
+
+    }
+
     async function signIn({email, password}){
         try{
             if(!email && !password){
@@ -13,7 +43,10 @@ function AuthProvider({children}){
             
              const response = await api.post("/sessions", {email, password})
           
-            const {user, token} = response.data
+             const {user, token } = response.data;
+
+            localStorage.setItem("rocketmovies@user:", JSON.stringify(user))
+            localStorage.setItem("rocketmovies@token:", token)
             api.defaults.headers.common['Authorization'] = `Bearer ${token}`
             setData({user, token})
 
@@ -27,8 +60,16 @@ function AuthProvider({children}){
 
     }
 
+    useEffect(()=> {
+        const token = localStorage.getItem("rocketmovies@token:")
+        const user = JSON.parse(localStorage.getItem("rocketmovies@user:"))
+        api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+        setData({token, user})
+
+    }, [])
+
     return(
-        <AuthContext.Provider value={{signIn, user: data.user}}>
+        <AuthContext.Provider value={{updateProfile, signOut, signIn, user: data.user}}>
             {children}
         </AuthContext.Provider>
     )

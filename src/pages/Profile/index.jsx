@@ -3,9 +3,20 @@ import {Input} from "../../Componentes/Input"
 import {ButtonText} from "../../Componentes/ButtonText"
 import {Button} from "../../Componentes/Button"
 import {FiUser, FiMail, FiLock, FiArrowLeft, FiCamera} from "react-icons/fi"
-
+import { useAuth } from "../../hooks/auth";
+import {useState} from "react"
 export function Profile(){
+  const {updateProfile, user} = useAuth()
+  const [name, setName] = useState(user.name)
+  const [email, setEmail] = useState(user.email)
+  const [passwordOld, setPasswordOld] = useState("")
+  const [passwordNew, setPasswordNew] = useState("")
+ 
 
+  async function handleUpdateProfile(){
+
+    await updateProfile({name, email, passwordNew, passwordOld})
+  }
   return(
     <Container>
       <header>
@@ -24,12 +35,12 @@ export function Profile(){
       </Avatar>
       
       
-      <Input icon={FiUser} placeholder="Nome" />
-      <Input icon={FiMail} placeholder="E-mail"/>
-      <Input icon={FiLock} placeholder="Senha atual"/>
-      <Input icon={FiLock} placeholder="Nova senha"/>
+      <Input type="text" icon={FiUser} placeholder="Nome" value={name} onChange={e=> setName(e.target.value)}/>
+      <Input type="email" icon={FiMail} placeholder="E-mail" value={email} onChange={e=> setEmail(e.target.value)}/>
+      <Input type="password" icon={FiLock} placeholder="Senha atual" onChange={e=> setPasswordOld(e.target.value)}/>
+      <Input type="password" icon={FiLock} placeholder="Nova senha" onChange={e=> setPasswordNew(e.target.value)}/>
 
-      <Button name="Salvar" />
+      <Button onClick={handleUpdateProfile} name="Salvar" />
 
       </Form>
       

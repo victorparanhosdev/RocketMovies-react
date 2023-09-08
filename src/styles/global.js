@@ -19,6 +19,7 @@ body {
 body * {
   font-family: 'Roboto Slab', serif;
   font-size: 1.6rem;
+  
 }
 
 a, button{

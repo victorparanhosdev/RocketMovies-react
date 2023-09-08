@@ -1,6 +1,9 @@
 import styled from 'styled-components'
 
-export const Container = styled.div``
+export const Container = styled.div`
+width: min(97%, 140rem);
+margin: auto;
+`
 
 export const Text = styled.div`
   textarea {

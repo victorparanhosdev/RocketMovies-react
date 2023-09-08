@@ -1,11 +1,15 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
+
+
   header {
     background: ${({ theme }) => theme.COLORS.ROSEOPACITY};
     height: 14.4rem;
     display: flex;
     align-items: center;
+    width: 100%;
+    padding-inline: 2rem;
     > div:first-child {
       width: min(100%, 144rem);
       margin: auto;

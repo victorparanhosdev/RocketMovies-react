@@ -4,10 +4,12 @@ export const Container = styled.div`
 display: grid;
 grid-template-rows: 11.6rem auto;
 grid-template-areas: "header" "content";
+width: min(97%, 140rem);
+margin: auto;
 
 `;
 export const Content = styled.div`
-max-width: 140rem;
+
 grid-area: content;
 margin: auto;
 
