@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
 
-
   header {
     background: ${({ theme }) => theme.COLORS.ROSEOPACITY};
     height: 14.4rem;
@@ -10,16 +9,15 @@ export const Container = styled.div`
     align-items: center;
     width: 100%;
     padding-inline: 2rem;
-    > div:first-child {
-      width: min(100%, 144rem);
-      margin: auto;
+    position: relative;
+    z-index: 1;
       a {
         font-size: 1.6rem;
         display: flex;
         align-items: center;
         justify-content: start;
       }
-    }
+
   }
 `
 

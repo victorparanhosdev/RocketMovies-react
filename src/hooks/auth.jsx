@@ -11,15 +11,23 @@ function AuthProvider({children}){
         localStorage.removeItem("rocketmovies@token:")
         setData({})
     }
-    async function updateProfile({name, email, passwordNew, passwordOld}){
+    async function updateProfile({name, email, passwordNew, passwordOld, avatarFile}){
 
         try{
             if(passwordNew && !passwordOld || !passwordNew && passwordOld){
                 return alert("Para alterar a senha é preciso preencher os dois campos")
             }
+            if(avatarFile) {
+                const fileForm = new FormData()
+                fileForm.append("avatar", avatarFile)
+                await api.patch("/users/avatar", fileForm)
 
+            }
+         
             const response = await api.put("/users", {name, email, password: passwordNew, old_password: passwordOld})
+            
             const {user} = response.data
+           
             setData({user, token: data.token})
             localStorage.setItem("rocketmovies@user:", JSON.stringify(user)); 
             alert("Perfil Atualizado")
