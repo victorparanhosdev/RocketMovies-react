@@ -5,7 +5,13 @@ import { Tag } from "../../Componentes/Tag"
 import { FiArrowLeft } from "react-icons/fi"
 import { AiFillStar, AiOutlineStar } from "react-icons/ai"
 import {BiTime} from "react-icons/bi"
+import { useAuth } from "../../hooks/auth"
+import avatarPlaceHolder from "../../assets/avatar_placeholder.svg"
+import { api } from "../../services/api"
 export function Movie() {
+  const {user} = useAuth()
+  const avatarURL = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}`: avatarPlaceHolder 
+
   return (
     <Container>
       <Header />
@@ -26,7 +32,7 @@ export function Movie() {
 
           <Autor>
             
-            <span><img src="https://github.com/victorparanhosdev.png" alt="foto-perfil" />Por Victor Paranhos</span>
+            <span><img src={avatarURL} alt="foto-perfil" />Por {user.name}</span>
             
             <span><BiTime /><span>17/03/2023 às 10:43</span></span>
             

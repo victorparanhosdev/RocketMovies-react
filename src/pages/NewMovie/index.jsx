@@ -1,11 +1,17 @@
-import { Container, Content, Text } from "./styles"
+import { Container, Content, Text} from "./styles"
 import { Header } from "../../Componentes/Header"
 import { ButtonText } from "../../Componentes/ButtonText"
 import { FiArrowLeft } from "react-icons/fi"
 import { IoMdClose, IoMdAdd } from "react-icons/io"
 import { Input } from "../../Componentes/Input"
 import { Button } from "../../Componentes/Button"
+import { Section } from "../../Componentes/Section"
+import {NewItem} from "../../Componentes/NewItem"
+import { api } from "../../services/api"
+import { useAuth } from "../../hooks/auth"
 export function NewMovie() {
+  const {user} = useAuth()
+  
   return (
     <Container>
       <Header />
@@ -25,16 +31,15 @@ export function NewMovie() {
             <textarea placeholder="Observação" name="" id="" rows="3"></textarea>
           </Text>
 
-          <div>
+          <Section>
             <h2>Marcadores</h2>
             <div>
-              <span>React<IoMdClose /></span>
+              <NewItem title="React" ico={IoMdClose}/>
               <div>
                 <input type="text" placeholder="Novo Marcador" /><IoMdAdd />
               </div>
             </div>
-
-          </div>
+          </Section>
 
           <div>
             <Button name="Excluir filme" />
