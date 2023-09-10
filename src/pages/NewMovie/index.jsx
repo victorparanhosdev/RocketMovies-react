@@ -17,12 +17,18 @@ export function NewMovie() {
   const [links, setLinks] = useState([])
   const [newlink, setNewLink] = useState("")
   function AddnewLink(){
+    if(newlink == ""){
+      return alert("Para adicionar um item, vocÊ precisa informar algum dado")
+    }
+
     setLinks(prevState=> [...prevState, newlink])
     setNewLink("")
+
   }
 
-  function removeLink(deleted){
-    setLinks(links.filter(link => link !== deleted))
+  async function removeLink(deleted){
+    setLinks(prevState => prevState.filter(link => link !== deleted))
+
   }
   
   return (
