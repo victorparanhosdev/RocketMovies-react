@@ -9,8 +9,21 @@ import { Section } from "../../Componentes/Section"
 import {NewItem} from "../../Componentes/NewItem"
 import { api } from "../../services/api"
 import { useAuth } from "../../hooks/auth"
+import { useState } from "react"
+import { InputAdd } from "../../Componentes/InputAdd";
+
 export function NewMovie() {
   const {user} = useAuth()
+  const [links, setLinks] = useState([])
+  const [newlink, setNewLink] = useState("")
+  function AddnewLink(){
+    setLinks(prevState=> [...prevState, newlink])
+    setNewLink("")
+  }
+
+  function removeLink(deleted){
+    setLinks(links.filter(link => link !== deleted))
+  }
   
   return (
     <Container>
@@ -31,14 +44,9 @@ export function NewMovie() {
             <textarea placeholder="Observação" name="" id="" rows="3"></textarea>
           </Text>
 
-          <Section>
-            <h2>Marcadores</h2>
-            <div>
-              <NewItem title="React" ico={IoMdClose}/>
-              <div>
-                <input type="text" placeholder="Novo Marcador" /><IoMdAdd />
-              </div>
-            </div>
+          <Section title="Marcadores">
+            {links.map(link => <NewItem name={link} onClick={()=> removeLink(link)} ico={IoMdClose}/>)}
+            <InputAdd value={newlink} onChange={e=> setNewLink(e.target.value)} onClick={AddnewLink} ico={IoMdAdd} placeholder="Novo Marcador"/>
           </Section>
 
           <div>

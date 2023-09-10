@@ -1,10 +1,11 @@
 import { Container } from "./styles";
 
 
-export function NewItem({title, ico: Icon}){
+export function NewItem({name, onClick, ico: Icon, ...rest}){
     return(
         <Container>
-            {title}{Icon && <Icon size={24}/>}
+            <span>{name}</span>
+            <button onClick={onClick} {...rest} type="button">{Icon && <Icon size={24}/>}</button>
         </Container>
     )
 }
