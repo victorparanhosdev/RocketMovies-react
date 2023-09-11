@@ -10,7 +10,7 @@ export function UserRoutes(){
         <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/profile" element={<Profile/>} />
-            <Route path="/movie" element={<Movie/>} />
+            <Route path="/movie/:id" element={<Movie/>} />
             <Route path="/addmovie" element={<NewMovie/>} />
      
         </Routes>

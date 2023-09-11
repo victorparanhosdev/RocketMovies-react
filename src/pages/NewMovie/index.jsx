@@ -8,26 +8,59 @@ import { Button } from "../../Componentes/Button"
 import { Section } from "../../Componentes/Section"
 import {NewItem} from "../../Componentes/NewItem"
 import { api } from "../../services/api"
-import { useAuth } from "../../hooks/auth"
 import { useState } from "react"
 import { InputAdd } from "../../Componentes/InputAdd";
-
+import { useNavigate } from "react-router-dom"
 export function NewMovie() {
-  const {user} = useAuth()
-  const [links, setLinks] = useState([])
-  const [newlink, setNewLink] = useState("")
+  const navigate = useNavigate()
+  const [title, setTitle] = useState("")
+  const [description, setDescription] = useState("")
+  const [rating, setRating] = useState("")
+
+  const [tags, setTags] = useState([])
+  const [newTags, setNewTags] = useState("")
+
+  async function handleSaveMovie(){
+    if(!title) {
+      return alert("Por favor preencha o Titulo do Filme")
+    }
+    if(!description) {
+      return alert("Por favor preencha a Descrição do Filme")
+    }
+    if(!rating) {
+      return alert("Por favor preencha a Nota do Filme")
+    }
+    
+    if(newTags){
+      return alert("Você digitou os dados, mas não adicionou")
+    }
+    try{
+      await api.post("/notes", {title, description, rating, tags})
+      alert("Filme Criado com sucesso!!")
+      navigate(-1)
+
+    }catch (error){
+      if(error.response){
+        alert(error.response.data.message)
+      }else {
+        alert("Não foi possivel Salvar")
+      }
+    }
+    
+  }
+
   function AddnewLink(){
-    if(newlink == ""){
+    if(newTags == ""){
       return alert("Para adicionar um item, vocÊ precisa informar algum dado")
     }
 
-    setLinks(prevState=> [...prevState, newlink])
-    setNewLink("")
+    setTags(prevState=> [...prevState, newTags])
+    setNewTags("")
 
   }
 
   async function removeLink(deleted){
-    setLinks(prevState => prevState.filter(link => link !== deleted))
+    setTags(prevState => prevState.filter(link => link !== deleted))
 
   }
   
@@ -43,21 +76,23 @@ export function NewMovie() {
           <Text>
 
             <div>
-              <Input type="text" placeholder="Titulo" />
-              <Input type="text" placeholder="Sua nota (de 0 a 5)" />
+              <Input type="text" onChange={e=> setTitle(e.target.value)} placeholder="Titulo" />
+              <Input type="text" onChange={e=> setRating(e.target.value)} placeholder="Sua nota (de 0 a 5)" />
             </div>
 
-            <textarea placeholder="Observação" name="" id="" rows="3"></textarea>
+            <textarea onChange={e=> setDescription(e.target.value)} placeholder="Observação" name="" id="" rows="3"></textarea>
           </Text>
-
+          
           <Section title="Marcadores">
-            {links.map(link => <NewItem name={link} onClick={()=> removeLink(link)} ico={IoMdClose}/>)}
-            <InputAdd value={newlink} onChange={e=> setNewLink(e.target.value)} onClick={AddnewLink} ico={IoMdAdd} placeholder="Novo Marcador"/>
+            {tags &&
+            tags.map((link, index) => <NewItem key={String(index)} name={link} onClick={()=> removeLink(link)} ico={IoMdClose}/>)
+            }
+            <InputAdd value={newTags} onChange={e=> setNewTags(e.target.value)} onClick={AddnewLink} ico={IoMdAdd} placeholder="Novo Marcador"/>
           </Section>
 
           <div>
             <Button name="Excluir filme" />
-            <Button name="Salvar alterações" />
+            <Button onClick={handleSaveMovie} name="Salvar alterações" />
           </div>
 
 

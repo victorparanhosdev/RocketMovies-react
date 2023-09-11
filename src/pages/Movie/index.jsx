@@ -8,9 +8,11 @@ import {BiTime} from "react-icons/bi"
 import { useAuth } from "../../hooks/auth"
 import avatarPlaceHolder from "../../assets/avatar_placeholder.svg"
 import { api } from "../../services/api"
+
 export function Movie() {
   const {user} = useAuth()
   const avatarURL = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}`: avatarPlaceHolder 
+
 
   return (
     <Container>

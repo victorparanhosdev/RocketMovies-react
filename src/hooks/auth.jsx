@@ -11,25 +11,27 @@ function AuthProvider({children}){
         localStorage.removeItem("rocketmovies@token:")
         setData({})
     }
-    async function updateProfile({name, email, passwordNew, passwordOld, avatarFile}){
+    async function updateProfile({user, avatarFile}){
+
 
         try{
-            if(passwordNew && !passwordOld || !passwordNew && passwordOld){
+            if(user.password && !user.old_password || !user.password && user.old_password){
                 return alert("Para alterar a senha é preciso preencher os dois campos")
             }
             if(avatarFile) {
                 const fileForm = new FormData()
                 fileForm.append("avatar", avatarFile)
-                await api.patch("/users/avatar", fileForm)
 
+                const response = await api.patch("/users/avatar", fileForm)
+                user.avatar = response.data.avatar
             }
          
-            const response = await api.put("/users", {name, email, password: passwordNew, old_password: passwordOld})
+            await api.put("/users", user)
             
-            const {user} = response.data
+            const {password, old_password, ...userData} = user
            
             setData({user, token: data.token})
-            localStorage.setItem("rocketmovies@user:", JSON.stringify(user)); 
+            localStorage.setItem("rocketmovies@user:", JSON.stringify(userData)); 
             alert("Perfil Atualizado")
             
 
