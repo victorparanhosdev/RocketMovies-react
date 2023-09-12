@@ -8,7 +8,7 @@ export default createGlobalStyle`
   box-sizing: border-box;
 }
 :root {
-  font-size: 62.5%;
+  font-size: 60%;
 }
 
 body {

@@ -1,5 +1,5 @@
 import { Container, Content, Text} from "./styles"
-import { Header } from "../../Componentes/Header"
+
 import { ButtonText } from "../../Componentes/ButtonText"
 import { FiArrowLeft } from "react-icons/fi"
 import { IoMdClose, IoMdAdd } from "react-icons/io"
@@ -11,6 +11,7 @@ import { api } from "../../services/api"
 import { useState } from "react"
 import { InputAdd } from "../../Componentes/InputAdd";
 import { useNavigate } from "react-router-dom"
+import { HeaderOffInput } from "../../Componentes/HeaderOffInput"
 export function NewMovie() {
   const navigate = useNavigate()
   const [title, setTitle] = useState("")
@@ -30,10 +31,13 @@ export function NewMovie() {
     if(!rating) {
       return alert("Por favor preencha a Nota do Filme")
     }
-    
+    if(tags.length == 0){
+      return alert("Adicione pelo menos uma tag")
+    }
     if(newTags){
       return alert("Você digitou os dados, mas não adicionou")
     }
+    
     try{
       await api.post("/notes", {title, description, rating, tags})
       alert("Filme Criado com sucesso!!")
@@ -66,7 +70,7 @@ export function NewMovie() {
   
   return (
     <Container>
-      <Header />
+      <HeaderOffInput />
 
       <Content>
         <ButtonText to="/" icon={FiArrowLeft} name="Voltar" />
@@ -91,7 +95,6 @@ export function NewMovie() {
           </Section>
 
           <div>
-            <Button name="Excluir filme" />
             <Button onClick={handleSaveMovie} name="Salvar alterações" />
           </div>
 

@@ -1,29 +1,58 @@
-import { Container, Content, Tags, Icons } from "./styles"
-import { Header } from "../../Componentes/Header"
+import { Container, Content, Tags, Icons, Section, HeaderOn, Profile } from "./styles"
 import { Button } from "../../Componentes/Button"
 import {RiAddLine} from 'react-icons/ri'
 import {Tag} from "../../Componentes/Tag"
 import {AiFillStar, AiOutlineStar} from "react-icons/ai"
-import { Link } from "react-router-dom"
+import {useAuth} from "../../hooks/auth"
 import { useState, useEffect } from "react"
 import { api } from "../../services/api"
+import { useNavigate, Link } from "react-router-dom"
+import {Input} from "../../Componentes/Input"
+import avatarPlaceHolder from "../../assets/avatar_placeholder.svg"
+
 export function Home(){
-    const [title, setTitle] = useState('')
-    const [tags, setTags] = useState('')
-  
+    const {user, signOut} = useAuth()
+    const [data, setData] = useState([])
+    const [search, setSearch] = useState("")
+    const navigate = useNavigate()
+    const avatarURL = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}`: avatarPlaceHolder 
+
+    function backTo(){
+        navigate("/")
+        signOut()
+    }
+    function handleExpandCard(id){
+        navigate(`/movie/${id}`)
+    }
+
     useEffect(()=> {
       async function fetchNotes(){
-        const response = await api.get(`/notes?title=${[]}&tags=${[]}`)
-        console.log(response.data)
+        const response = await api.get(`/notes?title=${search}&tags=${[]}`)
+        setData(response.data)
+        
       }
   
       fetchNotes()
-    }, [])
+    }, [search])
 
 
     return(
         <Container>
-            <Header />
+
+        <HeaderOn>
+            <div>
+            <h1>ReactMovies</h1>
+            <Input onChange={e=> setSearch(e.target.value)} placeholder="Pesquisar pelo titulo"/>
+            <Profile>
+                <div>
+                    <span>{user.name}</span>
+                    <button type="button" onClick={backTo} to="/">sair</button>
+                </div>
+                <Link to="/profile"><img src={avatarURL} alt={`foto do perfil de ${user.name}`} /></Link>
+            </Profile>
+            </div>
+        </HeaderOn>
+   
             <Content>
                 <div>
                 <h1>Meus Filmes</h1>
@@ -31,30 +60,37 @@ export function Home(){
                 
                 </div>
 
-                <section>
-                    <div>
-                        <Link to="/movie">
-                        <h2>Interestellar</h2>
-                        <Icons>
-                        <AiFillStar />
-                        <AiFillStar />
-                        <AiFillStar />
-                        <AiFillStar />
-                        <AiOutlineStar />
-                        </Icons>
+                <Section>
+                    {
+                    data && data.map((note) => {
+                        return <div key={String(note.id)}>
+                       <button onClick={()=> handleExpandCard(note.id)} type="button">
+                       <h2>{note.title}</h2>
+                       <Icons>
+           
+                       <AiFillStar />
+                       <AiFillStar />
+                       <AiFillStar />
+                       <AiFillStar />
+                       <AiOutlineStar />
+                       </Icons>
 
-                        <p>Pragas nas colheitas fizeram a civilização humana regredir para uma sociedade agrária em futuro de data desconhecida. Cooper, ex-piloto da NASA, tem uma fazenda com sua família. Murphy, a filha de dez anos de Cooper, acredita que seu quarto está assombrado por um fantasma que tenta se...</p>
-                        <Tags>
-                        <Tag name="Ficção Cientifica"/>
-                        <Tag name="Drama"/>
-                        <Tag name="Familia"/>
-                        </Tags>
-                
-                        
-                        </Link>
-                    </div>               
+                       <p>{note.description}</p>
+                       <Tags>
+                        {
+                            note.tags && note.tags.map(tag =><Tag key={tag.id} name={tag.name}/>)
+                        }
+           
                  
-                </section>
+                       </Tags>
+               
+                       
+                       </button>
+                   </div>   
+                    })
+                       
+                    }                 
+                </Section>
 
 
 

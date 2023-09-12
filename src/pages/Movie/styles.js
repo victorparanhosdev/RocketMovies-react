@@ -24,6 +24,22 @@ export const Film = styled.div`
     line-height: 2.1rem;
     font-weight: 400;
     text-align: justify;
+    padding-right: 1rem;
+  }
+
+  div:last-child {
+    margin-top: 4rem;
+
+    button {
+      background-color: #0d0c0f;
+      color: ${({theme})=> theme.COLORS.ROSE};
+      width: 100%;
+      height: 5.6rem;
+
+      font-weight: 700;
+      border-radius: 1rem;
+      border: none;
+    }
   }
 `
 

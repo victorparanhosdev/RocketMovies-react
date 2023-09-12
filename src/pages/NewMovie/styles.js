@@ -29,10 +29,7 @@ export const Content = styled.div`
     display: flex;
     gap: 4rem;
     margin: 4rem auto;
-    a:first-child {
-      background-color: #0d0c0f;
-      color: #ff859b;
-    }
+  
   }
 `
 export const Text = styled.div`
