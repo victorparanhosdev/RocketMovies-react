@@ -1,5 +1,5 @@
 import Axios from "axios";
 
 export const api = Axios.create({
-    baseURL: "http://localhost:3000"
+    baseURL: "https://rocketmovies-api-0kvo.onrender.com"
 })
